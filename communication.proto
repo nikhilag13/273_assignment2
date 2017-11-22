@@ -1,0 +1,31 @@
+syntax = "proto3";
+
+message Request {
+    string data = 1;
+}
+
+message Response {
+    string operation = 1;
+    string key = 2;
+    string data = 3;
+}
+
+message PutValues {
+    string key = 1;
+    string data = 2;
+}
+
+message DeleteValues {
+    string key = 1;
+}
+
+message Empty{
+}
+
+
+service Communication {
+   rpc message(Request) returns (stream Response) {}
+   rpc put(PutValues) returns (Empty){}
+   rpc delete(DeleteValues) returns (Empty){}
+
+}
